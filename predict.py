@@ -8,7 +8,7 @@ from sklearn.preprocessing import MinMaxScaler
 import base64
 
 # Load Trained Model
-MODEL_PATH = r"C:\Users\BIT\PycharmProjects\Stock_Price_Prediction\models\Stock_Predictions_Model.keras"
+MODEL_PATH = r"models\Stock_Predictions_Model.keras"
 model = load_model(MODEL_PATH)
 
 # Function to set background image
