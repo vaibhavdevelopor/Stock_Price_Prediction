@@ -23,10 +23,9 @@ if not os.path.exists(model_path):
 # Load the model
 model = load_model(model_path)
 
-
-
 # Function to set background image
 def set_background(image_path):
+    """Sets the background image for Streamlit app."""
     with open(image_path, "rb") as img_file:
         encoded_string = base64.b64encode(img_file.read()).decode()
 
@@ -42,9 +41,20 @@ def set_background(image_path):
     """
     st.markdown(bg_image_style, unsafe_allow_html=True)
 
+# Google Drive Image File ID
+image_file_id = "17Hf_WfHm76AnDVI9THkLg1QHZ2SK-R3H"
+image_path = "background.jpg"
+
+# Check if the image exists, if not, download it
+if not os.path.exists(image_path):
+    try:
+        url = f"https://drive.google.com/uc?export=download&id={image_file_id}"
+        gdown.download(url, image_path, quiet=False)
+    except Exception as e:
+        st.error(f"Image download failed: {e}")
+
 # Set background image
-IMAGE_PATH = r"C:\Users\BIT\PycharmProjects\Stock_Price_Prediction\background.jpg"  # Change to your image file
-set_background(IMAGE_PATH)
+set_background(image_path)
 
 # Streamlit UI
 st.title("📈 Stock Market Price Prediction")
