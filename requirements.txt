@@ -5,3 +5,4 @@ tensorflow
 streamlit
 matplotlib
 scikit-learn
+gdown

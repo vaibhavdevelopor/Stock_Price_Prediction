@@ -1,15 +1,29 @@
 import numpy as np
 import pandas as pd
 import yfinance as yf
-from tensorflow.keras.models import load_model
 import streamlit as st
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 import base64
+import gdown
+import os
+from tensorflow.keras.models import load_model
 
-# Load Trained Model
-MODEL_PATH = r"models\Stock_Predictions_Model.keras"
-model = load_model(MODEL_PATH)
+# Google Drive file ID
+file_id = "1x-MOTB6byjoAKmRPLnR0SkU577e9IciS"
+
+# Model path
+model_path = "Stock_Predictions_Model.keras"
+
+# Check if the model exists, if not, download it
+if not os.path.exists(model_path):
+    url = f"https://drive.google.com/uc?export=download&id={file_id}"
+    gdown.download(url, model_path, quiet=False)
+
+# Load the model
+model = load_model(model_path)
+
+
 
 # Function to set background image
 def set_background(image_path):
